@@ -25,3 +25,5 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+.ycm_extra_conf.py
+
