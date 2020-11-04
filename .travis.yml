@@ -18,7 +18,6 @@ before_script:
 - cmake -DCI=True ..
 
 script:
-- cd build
 - cmake --build .
 - ctest
 
