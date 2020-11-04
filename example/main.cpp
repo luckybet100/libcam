@@ -2,6 +2,8 @@
 #include <capture.hpp>
 
 int main() {
-    std::cout << get_video_device_count() << std::endl;
+    for (const auto& device : libcam::get_capture_devices()) {
+        std::cout << device.name << std::endl;
+    }    
     return 0;
 }
