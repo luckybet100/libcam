@@ -12,6 +12,12 @@ ENDIF()
 include(CTest)
 add_executable(capture_utils_test capture_utils_test.cpp)
 target_link_libraries(capture_utils_test libcam)
-add_test(capture_utils capture_utils_test)
+
+IF(CI)
+    add_test(capture_utils capture_utils_test "ci")
+ELSE()
+    add_test(capture_utils capture_utils_test "device")
+ENDIF()
+
 set_tests_properties(capture_utils PROPERTIES TIMEOUT 1)
 
