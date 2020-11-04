@@ -1,4 +1,4 @@
-nguage: cpp
+language: cpp
 osx_image: xcode12.2
 
 compiler:

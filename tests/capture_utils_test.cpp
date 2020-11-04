@@ -10,7 +10,7 @@ int main(int argc,char** argv) {
     assert(is_device || is_ci);
     auto devices = libcam::list_capture_devices();
     if (is_device) {
-        assert(devices.size() != 0);
+        assert(devices.size() > 0);
     }
     if (is_ci) {
         assert(devices.size() == 0);
