@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(libcam)
-
-#set(COMMON_FILES
-#  main.cpp
-#)
+project(libcam_sample)
 
 include_directories("../include")
+
+set(SOURCE_FILES main.cpp)
+add_executable(main ${SOURCE_FILES})
 
 IF(APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fobjc-arc")
@@ -16,6 +15,5 @@ IF(APPLE)
     )
 ENDIF()
 
-add_library(libcam ${PLATFORM_FILES})
-set_target_properties(libcam PROPERTIES PREFIX "")
+target_link_libraries(main libcam)
 
