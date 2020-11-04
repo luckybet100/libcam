@@ -1,0 +1,21 @@
+language: cpp
+osx_image: xcode11.3
+
+compiler:
+- clang
+
+addons:
+    homebrew:
+        packages:
+        - cmake
+        - ninja
+        update: true
+
+before_script:
+- mkdir -p build && cd build
+- cmake -G Ninja ..
+
+script:
+- cd build
+- ninja build
+- ninja test
