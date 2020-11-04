@@ -6,13 +6,13 @@ project(libcam)
 #  main.cpp
 #)
 
-include_directories("../include")
+include_directories(../include)
 
 IF(APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fobjc-arc")
     set(CMAKE_EXE_LINKER_FLAGS "-framework AVFoundation -w")
     set(PLATFORM_FILES
-        mac/capture.mm
+        mac/capture_utils.mm
     )
 ENDIF()
 

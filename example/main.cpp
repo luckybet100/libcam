@@ -1,9 +1,10 @@
 #include <iostream>
-#include <capture.hpp>
+#include <capture_utils.hpp>
 
 int main() {
-    for (const auto& device : libcam::get_capture_devices()) {
+    for (const auto& device : libcam::list_capture_devices()) {
         std::cout << device.name << std::endl;
     }    
     return 0;
 }
+

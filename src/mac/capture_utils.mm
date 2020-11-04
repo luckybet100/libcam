@@ -1,10 +1,10 @@
-#include <capture.hpp>
+#include <capture_utils.hpp>
 #include <AVFoundation/AVFoundation.h>
 #include <utility>
 
 namespace libcam {
 
-    std::vector< CaptureDeviceInfo > get_capture_devices() {
+    std::vector< CaptureDeviceInfo > list_capture_devices() {
         AVCaptureDeviceDiscoverySession *session = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera,AVCaptureDeviceTypeExternalUnknown]
             mediaType:AVMediaTypeVideo
             position: AVCaptureDevicePositionBack];

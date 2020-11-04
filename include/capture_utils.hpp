@@ -10,6 +10,6 @@ namespace libcam {
         std::string name;
     };
 
-    std::vector< CaptureDeviceInfo > get_capture_devices();
+    std::vector< CaptureDeviceInfo > list_capture_devices();
 
 }
