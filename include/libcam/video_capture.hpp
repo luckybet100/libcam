@@ -1,6 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <vector>
+#include <string>
+
 #include "exception.hpp"
 
 namespace libcam {
@@ -15,6 +18,11 @@ namespace libcam {
         class IVideoCapture;
     }
 
+    struct CaptureDeviceInfo {
+        size_t index;
+        std::string name;
+    };
+
     class VideoCapture {
      private:
         std::unique_ptr<internal::IVideoCapture> icap;
@@ -23,6 +31,7 @@ namespace libcam {
         VideoCapture(const VideoCapture& other) = delete;
         VideoCapture(VideoCapture&& other);
         VideoCapture& operator = (const VideoCapture& other) = delete;
+        static std::vector< CaptureDeviceInfo > list_devices();
         ~VideoCapture();
     };
 

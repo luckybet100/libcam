@@ -13,4 +13,3 @@ IF(APPLE)
 ENDIF()
 
 target_link_libraries(main libcam)
-
