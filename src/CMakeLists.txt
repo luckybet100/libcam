@@ -11,8 +11,7 @@ set(COMMON_FILES
 include_directories(../include)
 
 IF(APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-    set(CMAKE_EXE_LINKER_FLAGS "-framework AVFoundation -w")
+    set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework AVFoundation -w")
     set(PLATFORM_FILES
         mac/video_capture.mm
     )
