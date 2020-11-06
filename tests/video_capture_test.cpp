@@ -1,5 +1,5 @@
 #include <iostream>
-#include <libcam/video_capture.hpp>
+#include <libcam/vcap.hpp>
 #include <cassert>
 #include <cstring>
 

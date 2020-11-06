@@ -1,4 +1,4 @@
-#include <libcam/video_capture.hpp>
+#include <libcam/vcap.hpp>
 
 namespace libcam {
 

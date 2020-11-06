@@ -1,7 +1,7 @@
 #import <AVFoundation/AVFoundation.h>
 #include <iostream>
 
-#include "video_capture.hpp"
+#include "vcap.hpp"
 
 namespace libcam {
     

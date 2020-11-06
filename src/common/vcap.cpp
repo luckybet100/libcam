@@ -1,5 +1,5 @@
 #ifdef __APPLE__
-#include "../mac/video_capture.hpp"
+#include "../mac/vcap.hpp"
 #endif
 
 #include <libcam/utils.hpp>
