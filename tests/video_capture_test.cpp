@@ -1,4 +1,5 @@
 #include <libcam/vcap.hpp>
+#include <libcam/utils.hpp>
 #include <cassert>
 #include <cstring>
 #include <iostream>
@@ -6,7 +7,9 @@
 void test_list_capture_devices(bool allow_no_devices) {
     std::cerr << "test_list_capture_devices()" << std::endl;
     auto devices = libcam::VideoCapture::list_devices();
-    assert(allow_no_devices || !devices.empty());
+    bool test = allow_no_devices || !devices.empty();
+    assert(test);
+    libcam::utils::release_assert(test);
 }
 
 void test_create_device_with_wrong_index() {
@@ -21,6 +24,7 @@ void test_create_device_with_wrong_index() {
         throw;
     }
     assert(exception_catched);
+    libcam::utils::release_assert(exception_catched);
 }
 
 void test_create_device(bool allow_no_devices) {

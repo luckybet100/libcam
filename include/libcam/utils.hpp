@@ -1,10 +1,11 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <cstdio>
-#include "exception.hpp"
 #include <memory>
 
+#include "exception.hpp"
 
 namespace libcam {
 
@@ -25,6 +26,8 @@ namespace libcam {
             snprintf(buf.get(), size, format.c_str(), args...);
             return std::string(buf.get(), buf.get() + size - 1);
         }
+
+        void release_assert(bool ok);
 
     }
 }
