@@ -45,7 +45,7 @@ void test_read_frames(bool allow_no_devices) {
         try {
             libcam::VideoCapture capture(0);
             for (int i = 0; i < 10; ++i) {
-                assert(capture.read(1));
+                capture.read(1);
             }
         } catch (libcam::Exception &exception) {
             std::cerr << exception.what() << std::endl;

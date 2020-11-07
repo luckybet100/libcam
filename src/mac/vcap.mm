@@ -65,9 +65,13 @@ namespace libcam {
         }
     }
 
-    bool VideoCapture::read(double timeout) {
-        NSDate *limit = [NSDate dateWithTimeIntervalSinceNow:timeout];
-        return [static_cast<IVideoCaptureData *>(data)->capture_delegate read:limit];
+    void VideoCapture::read(double timeout) {
+        @autoreleasepool {
+            NSDate *limit = [NSDate dateWithTimeIntervalSinceNow:timeout];
+            if (![static_cast<IVideoCaptureData *>(data)->capture_delegate read:limit]) {
+                throw VideoCaptureReadFrameTimeout();
+            }
+        }
     }
 
     std::vector<CaptureDeviceInfo> VideoCapture::list_devices() {

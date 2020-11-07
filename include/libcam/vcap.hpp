@@ -22,6 +22,13 @@ namespace libcam {
         ~VideoCaptureConfigurationError() noexcept = default;
     };
 
+    class VideoCaptureReadFrameTimeout : public Exception {
+    public:
+        VideoCaptureReadFrameTimeout();
+
+        ~VideoCaptureReadFrameTimeout() noexcept = default;
+    };
+
     struct CaptureDeviceInfo {
         size_t index;
         std::string name;
@@ -43,7 +50,7 @@ namespace libcam {
 
         static std::vector<CaptureDeviceInfo> list_devices();
 
-        bool read(double timeout);
+        void read(double timeout);
 
         ~VideoCapture();
     };

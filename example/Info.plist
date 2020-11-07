@@ -15,7 +15,7 @@
 	<key>CFBundleName</key>
 	<string>example</string>
 	<key>CFBundlePackageType</key>
-	<string>application</string>
+	<string>LCAM</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

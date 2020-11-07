@@ -10,4 +10,7 @@ namespace libcam {
     VideoCaptureConfigurationError::VideoCaptureConfigurationError(const std::string &text)
             : Exception(text) {}
 
+    VideoCaptureReadFrameTimeout::VideoCaptureReadFrameTimeout()
+            : Exception("Read frame timeout reached") {}
+
 }
