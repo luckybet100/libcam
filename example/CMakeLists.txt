@@ -5,10 +5,14 @@ project(libcam_sample)
 include_directories(../include)
 
 set(SOURCE_FILES main.cpp)
-add_executable(main ${SOURCE_FILES})
+add_executable(example ${SOURCE_FILES})
 
-IF(APPLE)
+IF (APPLE)
     set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework AVFoundation -w")
-ENDIF()
+    set_target_properties(example PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist
+    )
+ENDIF ()
 
-target_link_libraries(main libcam)
+target_link_libraries(example libcam)

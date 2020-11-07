@@ -1,6 +1,5 @@
 #include <libcam/utils.hpp>
 #include <string>
-#include <vector>
 #include <cassert>
 
 int main() {

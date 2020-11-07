@@ -9,14 +9,18 @@
 namespace libcam {
 
     class VideoCaptureBadDeviceIndex : public Exception {
-     public:
+    public:
         VideoCaptureBadDeviceIndex(size_t index);
-        ~VideoCaptureBadDeviceIndex();
+
+        ~VideoCaptureBadDeviceIndex() noexcept = default;
     };
 
-    namespace internal {
-        class IVideoCapture;
-    }
+    class VideoCaptureConfigurationError : public Exception {
+    public:
+        VideoCaptureConfigurationError(const std::string &text);
+
+        ~VideoCaptureConfigurationError() noexcept = default;
+    };
 
     struct CaptureDeviceInfo {
         size_t index;
@@ -24,14 +28,23 @@ namespace libcam {
     };
 
     class VideoCapture {
-     private:
-        std::unique_ptr<internal::IVideoCapture> icap;
-     public:
+    private:
+        void *data;
+    public:
         VideoCapture(size_t index);
-        VideoCapture(const VideoCapture& other) = delete;
-        VideoCapture(VideoCapture&& other);
-        VideoCapture& operator = (const VideoCapture& other) = delete;
-        static std::vector< CaptureDeviceInfo > list_devices();
+
+        VideoCapture(const VideoCapture &other) = delete;
+
+        VideoCapture(VideoCapture &&other) = delete;
+
+        VideoCapture &operator=(const VideoCapture &other) = delete;
+
+        VideoCapture &operator=(VideoCapture &&other) = delete;
+
+        static std::vector<CaptureDeviceInfo> list_devices();
+
+        bool read(double timeout);
+
         ~VideoCapture();
     };
 

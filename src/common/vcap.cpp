@@ -1,30 +1,13 @@
-#ifdef __APPLE__
-#include "../mac/vcap.hpp"
-#endif
-
 #include <libcam/utils.hpp>
+#include <libcam/vcap.hpp>
 
 namespace libcam {
 
     VideoCaptureBadDeviceIndex::VideoCaptureBadDeviceIndex(size_t index)
-                : Exception(utils::format("Attemp to access device with invalid index. Index: %zu", index)) {
-           
-    }
+            : Exception(utils::format("Attempt to access device with invalid index. Index: %zu", index)) {}
 
-    VideoCaptureBadDeviceIndex::~VideoCaptureBadDeviceIndex() {
 
-    }
-
-    VideoCapture::VideoCapture(size_t index) 
-                : icap(new internal::IVideoCapture(index)) {
-        
-    }
-
-    VideoCapture::VideoCapture(VideoCapture&& other)
-                : icap(std::move(other.icap)) {
-
-    }
-
-    VideoCapture::~VideoCapture() {}
+    VideoCaptureConfigurationError::VideoCaptureConfigurationError(const std::string &text)
+            : Exception(text) {}
 
 }
