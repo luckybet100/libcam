@@ -4,11 +4,6 @@ project(LibcamTests)
 
 include_directories(../include)
 
-IF (APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fobjc-arc")
-    set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework AVFoundation -w")
-ENDIF ()
-
 add_executable(video_capture_test video_capture_test.cpp)
 target_link_libraries(video_capture_test libcam)
 

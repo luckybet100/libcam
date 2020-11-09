@@ -6,14 +6,13 @@ set(COMMON_FILES
         common/vcap.cpp
         common/exception.cpp
         common/utils.cpp
-        )
+        common/image.cpp)
 
 include_directories(../include)
 
 IF (APPLE)
-    set(CMAKE_EXE_LINKER_FLAGS -framework Foundation -framework AVFoundation -w)
     set(PLATFORM_FILES mac/vcap.mm
-            mac/cap_delegate.mm)
+            mac/cap_delegate.mm mac/convert.mm)
     set_source_files_properties(${PLATFORM_FILES} PROPERTIES COMPILE_FLAGS -fobjc-arc)
 ENDIF ()
 

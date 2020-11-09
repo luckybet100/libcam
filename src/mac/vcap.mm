@@ -3,6 +3,7 @@
 #include <libcam/vcap.hpp>
 #include <libcam/utils.hpp>
 #include "cap_delegate.hpp"
+#include "convert.hpp"
 
 namespace libcam {
 
@@ -42,6 +43,22 @@ namespace libcam {
             data_ptr->capture_output.alwaysDiscardsLateVideoFrames = YES;
             data_ptr->capture_delegate = [[CaptureDelegate alloc] init];
 
+            OSType pixelFormat = 0;
+            for (NSNumber *value in [data_ptr->capture_output availableVideoCVPixelFormatTypes]) {
+                unsigned int format = [value intValue];
+                if (pixel_format_is_supported(format)) {
+                    pixelFormat = format;
+                    break;
+                }
+            }
+            if (!pixelFormat) {
+                throw VideoCaptureConfigurationError("No available supported format");
+            }
+            NSDictionary *pixelBufferOptions = @{
+                    (id) kCVPixelBufferPixelFormatTypeKey: @(pixelFormat)
+            };
+            data_ptr->capture_output.videoSettings = pixelBufferOptions;
+
             @autoreleasepool {
                 dispatch_queue_t queue = dispatch_queue_create("camera_queue", DISPATCH_QUEUE_SERIAL);
                 [data_ptr->capture_output setSampleBufferDelegate:data_ptr->capture_delegate
@@ -55,6 +72,7 @@ namespace libcam {
             } else {
                 throw VideoCaptureConfigurationError("Can't add capture input to capture session");
             }
+
             if ([data_ptr->capture_session canAddOutput:data_ptr->capture_output]) {
                 [data_ptr->capture_session addOutput:data_ptr->capture_output];
             } else {
@@ -65,10 +83,11 @@ namespace libcam {
         }
     }
 
-    void VideoCapture::read(double timeout) {
+    void VideoCapture::read(double timeout, RgbImage &result) {
         @autoreleasepool {
             NSDate *limit = [NSDate dateWithTimeIntervalSinceNow:timeout];
-            if (![static_cast<IVideoCaptureData *>(data)->capture_delegate read:limit]) {
+            if (![static_cast<IVideoCaptureData *>(data)->capture_delegate read:limit
+                                                                         result:&result]) {
                 throw VideoCaptureReadFrameTimeout();
             }
         }

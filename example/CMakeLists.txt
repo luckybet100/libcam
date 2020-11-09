@@ -8,7 +8,6 @@ set(SOURCE_FILES main.cpp)
 add_executable(example ${SOURCE_FILES})
 
 IF (APPLE)
-    set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework AVFoundation -w")
     #set_target_properties(example PROPERTIES
     #    MACOSX_BUNDLE TRUE
     #    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist

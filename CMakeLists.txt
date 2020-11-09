@@ -11,6 +11,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 enable_testing()
 
+IF (APPLE)
+    set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework AVFoundation -framework CoreVideo -framework CoreMedia -w")
+ENDIF()
+
 add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(example)

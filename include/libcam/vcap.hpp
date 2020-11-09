@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+#include "image.hpp"
 #include "exception.hpp"
 
 namespace libcam {
@@ -29,6 +30,13 @@ namespace libcam {
         ~VideoCaptureReadFrameTimeout() noexcept = default;
     };
 
+    class VideoCaptureException : public Exception {
+    public:
+        VideoCaptureException(const std::string &text);
+
+        ~VideoCaptureException() noexcept = default;
+    };
+
     struct CaptureDeviceInfo {
         size_t index;
         std::string name;
@@ -50,7 +58,7 @@ namespace libcam {
 
         static std::vector<CaptureDeviceInfo> list_devices();
 
-        void read(double timeout);
+        void read(double timeout, RgbImage& result);
 
         ~VideoCapture();
     };

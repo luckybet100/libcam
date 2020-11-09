@@ -48,8 +48,11 @@ void test_read_frames(bool allow_no_devices) {
     } else {
         try {
             libcam::VideoCapture capture(0);
+            libcam::RgbImage buf;
             for (int i = 0; i < 10; ++i) {
-                capture.read(1);
+                capture.read(1, buf);
+                assert(buf.size().first != 0 && buf.size().second != 0);
+                libcam::utils::release_assert(buf.size().first != 0 && buf.size().second != 0);
             }
         } catch (libcam::Exception &exception) {
             std::cerr << exception.what() << std::endl;
