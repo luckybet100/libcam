@@ -1,7 +1,6 @@
+#include <libcam/vcap.hpp>
 #include <iostream>
 #include <fstream>
-#include <libcam/vcap.hpp>
-#include <libcam/exception.hpp>
 
 int main() {
     for (const auto &device : libcam::VideoCapture::list_devices()) {

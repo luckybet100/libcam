@@ -11,8 +11,8 @@ set(COMMON_FILES
 include_directories(../include)
 
 IF (APPLE)
-    set(PLATFORM_FILES mac/vcap.mm
-            mac/cap_delegate.mm mac/convert.mm)
+    set(PLATFORM_FILES mac/vcap/vcap.mm
+            mac/vcap/cap_delegate.mm mac/convert/convert.mm)
     set_source_files_properties(${PLATFORM_FILES} PROPERTIES COMPILE_FLAGS -fobjc-arc)
 ENDIF ()
 

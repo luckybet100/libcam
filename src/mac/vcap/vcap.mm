@@ -3,7 +3,7 @@
 #include <libcam/vcap.hpp>
 #include <libcam/utils.hpp>
 #include "cap_delegate.hpp"
-#include "convert.hpp"
+#include "../convert/convert.hpp"
 
 namespace libcam {
 
